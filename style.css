@@ -100,7 +100,7 @@ main form button {
   gap: 3rem;
 }
 .information .box__one {
-  width: 100%;
+  width: 76%;
   display: flex;
   justify-content: space-between;
 }
@@ -165,6 +165,10 @@ main form button {
 
 .other__info div i {
   color: var(--white);
+}
+
+.bio {
+  line-height: 25px;
 }
 
 /* .other__info #last {

@@ -15,8 +15,11 @@ function date(data) {
   return formattedDate;
 }
 
-// change elemet content
+// change element content
 function changeElementContent(data) {
+  document.getElementById('main__card').style.display = 'block';
+  document.querySelector('.error').style.display = 'none';
+
   const formattedDate = date(data);
 
   userName.textContent = `@ ${data.login}`;
@@ -64,23 +67,26 @@ function changeElementContent(data) {
 const searchUser = (e) => {
   e.preventDefault();
   const searchInput = document.querySelector('input').value;
-
   const apiURL = `https://api.github.com/users/${searchInput}`;
-  console.log(searchInput);
-  console.log(apiURL);
 
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', apiURL);
+  fetchData(apiURL);
+};
 
-  xhr.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      const data = JSON.parse(this.responseText);
-
-      changeElementContent(data);
+const fetchData = async (apiURL) => {
+  try {
+    const res = await fetch(apiURL);
+    if (!res.ok) {
+      throw new Error('Something went wrong, pls enter a valid username.');
     }
-  };
-
-  xhr.send();
+    const data = await res.json();
+    changeElementContent(data);
+  } catch (error) {
+    document.getElementById('main__card').style.display = 'none';
+    document.querySelector('.error').style.display = 'block';
+    document.querySelector(
+      '.error'
+    ).innerHTML = `<p style="color: white; text-align: center;">${error}</p>`;
+  }
 };
 
 searchBtn.addEventListener('click', searchUser);

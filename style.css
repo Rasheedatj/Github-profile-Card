@@ -74,12 +74,17 @@ main form button {
   width: 20%;
 }
 
-#main__card {
+#main__card,
+.error {
   background-color: var(--secondaryColor);
   padding: 2rem 15px;
   border-radius: 15px;
   /* display: flex;
   gap: 3rem; */
+}
+
+.error {
+  display: none;
 }
 
 #main__card .icon img {

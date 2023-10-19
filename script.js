@@ -74,11 +74,13 @@ const searchUser = (e) => {
 
 const fetchData = async (apiURL) => {
   try {
+    document.querySelector('.loader-container').style.display = 'flex';
     const res = await fetch(apiURL);
     if (!res.ok) {
       throw new Error('Something went wrong, pls enter a valid username.');
     }
     const data = await res.json();
+    document.querySelector('.loader-container').style.display = 'none';
     changeElementContent(data);
   } catch (error) {
     document.getElementById('main__card').style.display = 'none';

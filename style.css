@@ -82,6 +82,9 @@ main form button {
   /* display: flex;
   gap: 3rem; */
 }
+#main__card {
+  position: relative;
+}
 
 .error {
   display: none;
@@ -176,9 +179,33 @@ main form button {
   line-height: 25px;
 }
 
-/* .other__info #last {
+/* custom loader styles */
+.loader-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-} */
+  display: none;
+}
+.custom-loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #766df4 94%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, #766df4);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
 
 @media screen and (max-width: 620px) {
   body > section {
